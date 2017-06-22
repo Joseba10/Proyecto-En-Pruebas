@@ -27,7 +27,7 @@ margin-left: 550px;
 </head>
 <body>
 
-<form action="/admin/productoform" method="post">
+<form action="/Zonadecompra" method="post">
 
 <h1>Zona de Compra</h1>
 
@@ -38,25 +38,25 @@ margin-left: 550px;
 		<p>Productos que quieres comprar y la cantidad</p>
 			
 			<input name="productos" type="checkbox" value="manzana">Manzanas	
-			<input id="cantidad" name="cantidad-manzana" type="text" value="${producto.cantidad}"><br>
+			<input id="cantidad1" name="cantidad-manzana" type="text" value="${producto.cantidad}" title="Cantidad"><br>
 			
 			<input name="productos" type="checkbox"value="tomate">Tomates
-			<input id="cantidad" name="cantidad-tomate" type="text" value="${producto.cantidad}"><br>
+			<input id="cantidad2" name="cantidad-tomate" type="text" value="${producto.cantidad}" title="Cantidad"><br>
 			
 			<input name="productos" type="checkbox"value="patata">Patatas
-			<input id="cantidad" name="cantidad-patata" type="text" value="${producto.cantidad}"><br>
+			<input id="cantidad3" name="cantidad-patata" type="text" value="${producto.cantidad}" title="Cantidad"><br>
 			
 			<input name="productos" type="checkbox"value="mandarina">Mandarinas
-			<input id="cantidad" name="cantidad-mandarina" type="text" value="${producto.cantidad}"><br>
+			<input id="cantidad4" name="cantidad-mandarina" type="text" value="${producto.cantidad}" title="Cantidad"><br>
 			
 			<input name="productos" type="checkbox"value="naranja">Naranjas
-			<input id="cantidad" name="cantidad-naranja" type="text" value="${producto.cantidad}"><br>
+			<input id="cantidad5" name="cantidad-naranja" type="text" value="${producto.cantidad}" title="Cantidad"><br>
 			
 			<input name="productos" type="checkbox"value="pera">Peras
-			<input id="cantidad" name="cantidad-pera" type="text" value="${producto.cantidad}"><br>
+			<input id="cantidad6" name="cantidad-pera" type="text" value="${producto.cantidad}" title="Cantidad"><br>
 			
 			<input name="productos" type="checkbox"value="vino">Botellas de Vino
-			<input id="cantidad" name="cantidad-vino" type="text" value="${producto.cantidad}">
+			<input id="cantidad7" name="cantidad-vino" type="text" value="${producto.cantidad}" title="Cantidad">
 			
 	
 

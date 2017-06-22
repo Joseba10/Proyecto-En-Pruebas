@@ -1,11 +1,13 @@
 package DAO;
 
-public interface carritoDAO {
+import com.ipartek.TIPOS.Carrito;
 
-	public void insert();
+public interface carritoDAO extends IpartekDAO {
 
-	public void delete();
+	public int insert(Carrito carrito);
 
-	public void update();
+	public int delete(int id_username);
+
+	public void update(Carrito carrito);
 
 }
