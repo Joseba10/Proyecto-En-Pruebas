@@ -69,7 +69,7 @@ margin-left: 550px;
 			
 			<p class="errores">${producto.errores }</p>
 			
-			<input type="hidden" name="opform" value="${param.op }">
+			<input type="hidden" name="op" value="completado">
 
 		
 	</form>

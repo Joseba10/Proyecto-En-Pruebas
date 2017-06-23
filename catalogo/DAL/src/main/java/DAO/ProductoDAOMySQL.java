@@ -13,7 +13,7 @@ import com.ipartek.TIPOS.Producto;
 public class ProductoDAOMySQL extends IpartekDAOMySQL implements ProductoDAO {
 
 	private final static String FIND_ALL = "Select * from productos";
-
+	private final static String FIND_BY_NAME = "SELECT * FROM productos WHERE nombre = ?";
 	private final static String INSERT = "Insert into productos (nombre,precio,descripcion,imagen,cantidad) Values (?,?,?,?,?)";
 	private final static String Update = "Update productos Set nombre=?, precio=?,descripcion=?,imagen=?,cantidad=? where id=?";
 	private final static String Delete = "Delete from productos where id=?";
@@ -124,6 +124,37 @@ public class ProductoDAOMySQL extends IpartekDAOMySQL implements ProductoDAO {
 
 		return producto;
 
+	}
+
+	public Producto findByName(String nombre) {
+		Producto producto = null;
+		ResultSet rs = null;
+
+		try {
+
+			psFindByName = con.prepareStatement(FIND_BY_NAME);
+
+			psFindByName.setString(1, nombre);
+			rs = psFindByName.executeQuery();
+
+			if (rs.next()) {
+				producto = new Producto();
+
+				producto.setId(rs.getInt("id"));
+				producto.setNombre(rs.getString("nombre"));
+				producto.setPrecio(rs.getDouble("precio"));
+				producto.setDescripcion(rs.getString("descripcion"));
+				producto.setImagen(rs.getInt("imagen"));
+				producto.setCantidad(rs.getInt("cantidad"));
+			}
+
+		} catch (Exception e) {
+			throw new DAOException("Error en findByName", e);
+		} finally {
+			cerrar(psFindByName, rs);
+		}
+
+		return producto;
 	}
 
 	public int insert(Producto producto) {
