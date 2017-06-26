@@ -46,7 +46,7 @@ public class Inicializador implements ServletContextListener {
 		usuarioDAO.insert(new Usuario(1, "admin", "admin", "admin"));
 		usuarioDAO.insert(new Usuario(2, "hodei2", "pass2", "j"));
 		usuarioDAO.insert(new Usuario(2, "joseba", "joseba", "joseba"));
-		log.info("Añadidos 3 usuarios");
+		log.info("Añadidos los usuarios");
 		usuarioDAO.cerrar();
 
 		ProductoDAO productosDAO = ProductoDAOFactory.getProductoDAO();
@@ -57,9 +57,15 @@ public class Inicializador implements ServletContextListener {
 
 		}
 
-		productosDAO.insert(new Producto("Manzana", 2.0, "Manzana de Asturias", 0, 2));
-		productosDAO.insert(new Producto("Tomate", 2.0, "Tomate de Asturias", 1, 3));
-		log.info("Añadidos 2 productos");
+		productosDAO.insert(new Producto("Manzanas", 2.0, "Manzana de Asturias", 0, 17));
+		productosDAO.insert(new Producto("Tomates", 4.0, "Tomate de Asturias", 1, 21));
+		productosDAO.insert(new Producto("Patatas", 3.0, "Patatas de Alava", 2, 31));
+		productosDAO.insert(new Producto("Mandarinas", 1.0, "Mandarina de Valencia", 3, 12));
+		productosDAO.insert(new Producto("Naranjas", 3.0, "Naranja de Valencia", 4, 15));
+		productosDAO.insert(new Producto("Peras", 3.0, "Peras de Galicia", 5, 22));
+		productosDAO.insert(new Producto("Vinos", 1.0, "Vino de la Rioja", 6, 36));
+		
+		log.info("Añadidos los productos");
 		productosDAO.cerrar();
 		application.setAttribute("productoDAO", productosDAO);
 

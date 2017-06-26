@@ -37,13 +37,20 @@ public class Zonadecompra extends HttpServlet {
 		ArrayList<Producto> productosarray = new ArrayList<>();
 
 		// Recoger las opciones que esten seleccionadas
-
+		int cantidad;
 		if (productos != null) {
 			for (String producto : productos) {
 
-				int cantidad = Integer.parseInt(request.getParameter("cantidad-" + producto));
+				if (request.getParameter("cantidad-" + producto) == "") {
 
-				System.out.println("ID: " + producto + ", cantidad: " + cantidad);
+					cantidad = 1;
+				}
+
+				else {
+					cantidad = Integer.parseInt(request.getParameter("cantidad-" + producto));
+
+					System.out.println("ID: " + producto + ", cantidad: " + cantidad);
+				}
 			}
 		}
 		System.out.println("productosarray: " + productosarray);

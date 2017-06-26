@@ -131,9 +131,10 @@ public class ProductoDAOMySQL extends IpartekDAOMySQL implements ProductoDAO {
 		ResultSet rs = null;
 
 		try {
-
+			log.info(con.isClosed());
+			log.info(nombre);
 			psFindByName = con.prepareStatement(FIND_BY_NAME);
-
+			log.info(psFindByName);
 			psFindByName.setString(1, nombre);
 			rs = psFindByName.executeQuery();
 
@@ -197,7 +198,7 @@ public class ProductoDAOMySQL extends IpartekDAOMySQL implements ProductoDAO {
 	private void cerrar(PreparedStatement ps, ResultSet rs) {
 		try {
 			if (rs != null)
-				con.close();
+				rs.close();
 
 			if (psFindAll != null)
 				psFindAll.close();
