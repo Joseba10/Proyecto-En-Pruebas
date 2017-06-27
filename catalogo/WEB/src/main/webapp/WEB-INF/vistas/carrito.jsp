@@ -33,30 +33,31 @@ margin-left: 550px;
 
 
 
-		
+		<!---manzanas --><!---tomates --><!-- -patatas --><!---mandarinas --><!---naranjas -->
+		<!---peras --><!---vinos -->
 
 		<p>Productos que quieres comprar y la cantidad</p>
 			
-			<input name="productos" type="checkbox" value="manzanas">Manzanas	
-			<input id="cantidad1" name="cantidad-manzanas" type="text" value="${producto.cantidad}" title="Cantidad" pattern="[0-9]+"><br>
+			<input name="productos" type="hidden" value="manzanas">Manzanas	
+			<input id="cantidad1" name="cantidad" type="text" value="${producto.cantidad}" title="Cantidad" pattern="[0-9]+"><br>
 			
-			<input name="productos" type="checkbox"value="tomates">Tomates
-			<input id="cantidad2" name="cantidad-tomates" type="text" value="${producto.cantidad}" title="Cantidad" pattern="[0-9]+"><br>
+			<input name="productos" type="hidden"value="tomates">Tomates
+			<input id="cantidad2" name="cantidad" type="text" value="${producto.cantidad}" title="Cantidad" pattern="[0-9]+"><br>
 			
-			<input name="productos" type="checkbox"value="patatas">Patatas
-			<input id="cantidad3" name="cantidad-patatas" type="text" value="${producto.cantidad}" title="Cantidad" pattern="[0-9]+"><br>
+			<input name="productos" type="hidden"value="patatas">Patatas
+			<input id="cantidad3" name="cantidad" type="text" value="${producto.cantidad}" title="Cantidad" pattern="[0-9]+"><br>
 			
-			<input name="productos" type="checkbox"value="mandarinas">Mandarinas
-			<input id="cantidad4" name="cantidad-mandarinas" type="text" value="${producto.cantidad}" title="Cantidad" pattern="[0-9]+"><br>
+			<input name="productos" type="hidden"value="mandarinas">Mandarinas
+			<input id="cantidad4" name="cantidad" type="text" value="${producto.cantidad}" title="Cantidad" pattern="[0-9]+"><br>
 			
-			<input name="productos" type="checkbox"value="naranjas">Naranjas
-			<input id="cantidad5" name="cantidad-naranjas" type="text" value="${producto.cantidad}" title="Cantidad" pattern="[0-9]+"><br>
+			<input name="productos" type="hidden"value="naranjas">Naranjas
+			<input id="cantidad5" name="cantidad" type="text" value="${producto.cantidad}" title="Cantidad" pattern="[0-9]+"><br>
 			
-			<input name="productos" type="checkbox"value="peras">Peras
-			<input id="cantidad6" name="cantidad-peras" type="text" value="${producto.cantidad}" title="Cantidad" pattern="[0-9]+"><br>
+			<input name="productos" type="hidden"value="peras">Peras
+			<input id="cantidad6" name="cantidad" type="text" value="${producto.cantidad}" title="Cantidad" pattern="[0-9]+"><br>
 			
-			<input name="productos" type="checkbox"value="vinos">Botellas de Vino
-			<input id="cantidad7" name="cantidad-vinos" type="text" value="${producto.cantidad}" title="Cantidad" pattern="[0-9]+">
+			<input name="productos" type="hidden"value="vinos">Botellas de Vino
+			<input id="cantidad7" name="cantidad" type="text" value="${producto.cantidad}" title="Cantidad" pattern="[0-9]+">
 			
 	
 
