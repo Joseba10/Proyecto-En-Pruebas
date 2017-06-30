@@ -1,6 +1,7 @@
 package controladores;
 
 import java.io.IOException;
+import java.util.ArrayList;
 
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
@@ -146,6 +147,9 @@ public class LoginServer extends HttpServlet {
 			usuarioDAO.cerrar();
 
 			session.setAttribute("usuario", usuario);
+
+			ArrayList<Producto> productosarray = new ArrayList<>();
+			session.setAttribute("productosarray", productosarray);
 
 			// response.sendRedirect("principal.jsp");
 			request.getRequestDispatcher(RUTA_PRINCIPAL).forward(request, response);

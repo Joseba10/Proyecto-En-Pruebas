@@ -36,30 +36,14 @@ margin-left: 550px;
 		<!---manzanas --><!---tomates --><!-- -patatas --><!---mandarinas --><!---naranjas -->
 		<!---peras --><!---vinos -->
 
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
 		<p>Productos que quieres comprar y la cantidad</p>
+			<c:forEach items="${arrayproductos}" var="producto">
+				${producto.nombre}
+				<input name="${producto.id }" type="number" value="" placeholder="Cantidad" pattern="[0-9]+"><br>
+			</c:forEach>	
 			
-			<input name="productos" type="hidden" value="manzanas">Manzanas	
-			<input id="cantidad1" name="cantidad" type="text" value="${producto.cantidad}" title="Cantidad" pattern="[0-9]+"><br>
-			
-			<input name="productos" type="hidden"value="tomates">Tomates
-			<input id="cantidad2" name="cantidad" type="text" value="${producto.cantidad}" title="Cantidad" pattern="[0-9]+"><br>
-			
-			<input name="productos" type="hidden"value="patatas">Patatas
-			<input id="cantidad3" name="cantidad" type="text" value="${producto.cantidad}" title="Cantidad" pattern="[0-9]+"><br>
-			
-			<input name="productos" type="hidden"value="mandarinas">Mandarinas
-			<input id="cantidad4" name="cantidad" type="text" value="${producto.cantidad}" title="Cantidad" pattern="[0-9]+"><br>
-			
-			<input name="productos" type="hidden"value="naranjas">Naranjas
-			<input id="cantidad5" name="cantidad" type="text" value="${producto.cantidad}" title="Cantidad" pattern="[0-9]+"><br>
-			
-			<input name="productos" type="hidden"value="peras">Peras
-			<input id="cantidad6" name="cantidad" type="text" value="${producto.cantidad}" title="Cantidad" pattern="[0-9]+"><br>
-			
-			<input name="productos" type="hidden"value="vinos">Botellas de Vino
-			<input id="cantidad7" name="cantidad" type="text" value="${producto.cantidad}" title="Cantidad" pattern="[0-9]+">
-			
-	
 
 			<input type="submit" value="Enviar">
 			

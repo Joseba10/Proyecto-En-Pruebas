@@ -139,15 +139,15 @@ margin-left: 150px;
 	
 	
 	
-	<c:forEach items="${sessionScope.productosarray}" var="producto">
+	<c:forEach items="${sessionScope.productosCarrito}" var="producto">
 	<tr>
 	
 		
-		<td>${producto.nombre}</td>
-		<td>${producto.precio} €</td>
-		<td>${producto.descripcion}</td>
-		<td>${producto.cantidad}</td>
-		<td><img src="${producto.imagen}.jpg" width="80px"></td>
+		<td>${producto.value.nombre}</td>
+		<td>${producto.value.precio} €</td>
+		<td>${producto.value.descripcion}</td>
+		<td>${producto.value.cantidad}</td>
+		<td><img src="${producto.value.imagen}.jpg" width="80px"></td>
 		
 		
 		
@@ -157,7 +157,7 @@ margin-left: 150px;
 	</c:forEach>
 			
 	<div id="carrito">
-	<a href="Zonadecompra?op=primeravez">Zona de Compra</a>
+	<a href="Zonadecompra?op=primeravez">Volver hacer la Compra</a>
 	
 	</div>
 	

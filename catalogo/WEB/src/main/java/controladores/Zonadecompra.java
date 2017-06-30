@@ -2,7 +2,8 @@ package controladores;
 
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Iterator;
+import java.util.Enumeration;
+import java.util.TreeMap;
 
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
@@ -37,13 +38,6 @@ public class Zonadecompra extends HttpServlet {
 
 		String[] cantidades = request.getParameterValues("cantidad");
 
-		int[] cantidadesParseadas = null;
-
-		if (cantidades != null) {
-
-			cantidadesParseadas = new int[cantidades.length];
-		}
-
 		ArrayList<Producto> productosarray = new ArrayList<>();
 
 		// Recoger las opciones que esten seleccionadas
@@ -68,6 +62,8 @@ public class Zonadecompra extends HttpServlet {
 		HttpSession session = request.getSession();
 		session.setAttribute("listaproductos", productos);
 
+		productosarray = (ArrayList<Producto>) session.getAttribute("productosarray");
+
 		Usuario usuario = (Usuario) session.getAttribute("usuario");
 
 		if (op == null) {
@@ -79,55 +75,73 @@ public class Zonadecompra extends HttpServlet {
 			switch (op) { // La primera vez que entre ira a la zona del formulario
 			case "primeravez":
 
+				productodao.abrir();
+				Producto[] arrayproductos = productodao.findAll();
+				productodao.cerrar();
+				request.setAttribute("arrayproductos", arrayproductos);
 				request.getRequestDispatcher("/WEB-INF/vistas/carrito.jsp").forward(request, response);
 				break;
 
 			case "completado":
+
+				Enumeration<String> nombres = request.getParameterNames();
+
 				productodao.abrir();
-				for (String nombre : productos) {
 
-					// El array se llena de productos
+				TreeMap<Integer, Producto> productosCarrito = (TreeMap<Integer, Producto>) session.getAttribute("productosCarrito");
 
-					Producto p = productodao.findByName(nombre);
-					// p.setCantidad(cantidad);
-					productosarray.add(p);
+				if (productosCarrito == null) {
 
+					productosCarrito = new TreeMap<Integer, Producto>();
 				}
 
-				for (int i = 0; i < cantidades.length; i++) {
+				while (nombres.hasMoreElements()) {
+					String idStr = nombres.nextElement();
+					int cantidad;
+					try {
 
-					if (cantidades[i] == "") {
+						cantidad = Integer.parseInt(request.getParameter(idStr));
+					} catch (Exception e) {
 
-						cantidadesParseadas[i] = 0;
-
+						cantidad = 0;
 					}
 
-					else {
+					if (cantidad != 0) {
 
-						cantidadesParseadas[i] = Integer.parseInt(cantidades[i]);
+						int id = Integer.parseInt(idStr);
+
+						Producto p = productodao.findById(id);
+
+						int cantidadRepetida = 0;
+						if (productosCarrito.containsKey(p.getId())) {
+
+							/*
+							 * Hacer TreeMap para sustituirlo de esta manera podria coger
+							 * los atributos,en este caso cantidad
+							 */
+							cantidadRepetida = productosCarrito.get(p.getId()).getCantidad();
+
+							// for (Producto productoRepetido : productosCarrito.values())
+							// {
+							//
+							// if (productoRepetido.getId() == p.getId()) {
+							// cantidadRepetida = productoRepetido.getCantidad();
+							//
+							// }
+							//
+							// }
+
+							p.setCantidad(cantidad + cantidadRepetida);
+
+						} else {
+							p.setCantidad(cantidad);
+						}
+						productosCarrito.put(p.getId(), p);
 					}
 				}
-
-				for (int i = 0; i < cantidades.length; i++) {
-
-					productosarray.get(i).setCantidad(cantidadesParseadas[i]);
-
-				}
-
-				for (Iterator<Producto> ite = productosarray.iterator(); ite.hasNext();) {
-
-					Producto p = ite.next();
-
-					if (p.getCantidad() == 0) {
-
-						ite.remove();
-					}
-
-				}
-
 				productodao.cerrar();
+				session.setAttribute("productosCarrito", productosCarrito);
 
-				session.setAttribute("productosarray", productosarray);
 				request.getRequestDispatcher("/WEB-INF/vistas/factura.jsp").forward(request, response);
 				break;
 			default:
