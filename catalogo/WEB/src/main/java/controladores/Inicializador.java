@@ -64,7 +64,7 @@ public class Inicializador implements ServletContextListener {
 		productosDAO.insert(new Producto("Naranjas", 3.0, "Naranja de Valencia", 4, 15));
 		productosDAO.insert(new Producto("Peras", 3.0, "Peras de Galicia", 5, 22));
 		productosDAO.insert(new Producto("Vinos", 1.0, "Vino de la Rioja", 6, 36));
-		
+
 		log.info("Añadidos los productos");
 		productosDAO.cerrar();
 		application.setAttribute("productoDAO", productosDAO);

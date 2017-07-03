@@ -105,7 +105,8 @@ public class Zonadecompra extends HttpServlet {
 
 						cantidad = 0;
 					}
-
+					System.out.println(idStr);
+					System.out.println(request.getParameter(idStr));
 					if (cantidad != 0) {
 
 						int id = Integer.parseInt(idStr);
@@ -140,6 +141,8 @@ public class Zonadecompra extends HttpServlet {
 					}
 				}
 				productodao.cerrar();
+
+				System.out.println(productosCarrito);
 				session.setAttribute("productosCarrito", productosCarrito);
 
 				request.getRequestDispatcher("/WEB-INF/vistas/factura.jsp").forward(request, response);

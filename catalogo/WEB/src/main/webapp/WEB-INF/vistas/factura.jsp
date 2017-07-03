@@ -47,9 +47,11 @@ text-decoration: none;
 table{
 
 margin-left: 370px;
-margin-top: -100px;
+
 border: solid;
 background-color: green;
+font-family: sans-serif;
+
 
 border-color: green;
 }
@@ -89,17 +91,51 @@ a{
 text-decoration: none;}
 
 #carrito{
-
+margin-top:-210px;
 margin-left:100px;
 border: solid 2px;
 width: 200px;
 text-align: center;
+font-family: sans-serif;
+text-transform: uppercase;
+border: solid 2px;
+-webkit-border-radius: 70px;
+-moz-border-radius: 70px;
+border-radius: 70px;
+padding-top: 10px;
+height: 40px;
+
+}
+
+#confirmar{
+
+margin-left: 80px;
+margin-top: 80px;
+border: solid 2px;
+width: 230px;
+text-align:center;
+-webkit-border-radius: 70px;
+-moz-border-radius: 70px;
+border-radius: 70px;
+padding-top: 10px;
+height: 30px;
+font-family: sans-serif;
+text-transform: uppercase;
+}
+
+
+#confirmar a{
+
+font-size: 16px;
+
+
+
 }
 
 h3{
 
 margin-left: 650px;
-
+text-transform: uppercase;
 
 }
 
@@ -148,14 +184,17 @@ margin-left: 150px;
 		<td>${producto.value.descripcion}</td>
 		<td>${producto.value.cantidad}</td>
 		<td><img src="${producto.value.imagen}.jpg" width="80px"></td>
-		
-		
-		
-		
-	
+
 	</tr>
 	</c:forEach>
 			
+
+	</tbody>
+
+
+
+</table>
+
 	<div id="carrito">
 	<a href="Zonadecompra?op=primeravez">Volver hacer la Compra</a>
 	
@@ -169,13 +208,11 @@ margin-left: 150px;
 	
 	
 	</div>
-	</tbody>
-
-
-
-</table>
-
-
+	
+	<div id="confirmar">
+	<a href="Zonadecompra?op=confirmado">Confirmar Compra</a>
+	
+	</div>
 
 
 <%@  include file="includes/productopie.jsp" %>
