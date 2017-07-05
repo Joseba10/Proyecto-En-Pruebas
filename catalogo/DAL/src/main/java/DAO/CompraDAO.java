@@ -2,7 +2,7 @@ package DAO;
 
 import com.ipartek.TIPOS.Carrito;
 
-public interface carritoDAO extends IpartekDAO {
+public interface CompraDAO extends IpartekDAO {
 
 	public int insert(Carrito carrito);
 

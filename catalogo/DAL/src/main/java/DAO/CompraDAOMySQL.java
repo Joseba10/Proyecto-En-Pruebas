@@ -8,7 +8,7 @@ import org.apache.log4j.Logger;
 
 import com.ipartek.TIPOS.Carrito;
 
-public class CarritoDAOMySQL extends IpartekDAOMySQL implements carritoDAO {
+public class CompraDAOMySQL extends IpartekDAOMySQL implements CompraDAO {
 
 	private final static String FIND_ID = "Select * from compras where username=?";
 	private final static String INSERT = "Insert into compras(username,productos,cantidad)Values(?,?,?)";
@@ -20,7 +20,7 @@ public class CarritoDAOMySQL extends IpartekDAOMySQL implements carritoDAO {
 	// LOG4J
 	private static Logger log = Logger.getLogger(ProductoDAOMySQL.class);
 
-	public CarritoDAOMySQL() {
+	public CompraDAOMySQL() {
 
 	}
 

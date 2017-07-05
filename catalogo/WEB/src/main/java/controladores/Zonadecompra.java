@@ -13,6 +13,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import DAO.CompraDAO;
 import DAO.ProductoDAO;
 
 import com.ipartek.TIPOS.Producto;
@@ -32,6 +33,8 @@ public class Zonadecompra extends HttpServlet {
 		String op = request.getParameter("op");
 
 		ServletContext application = request.getServletContext();
+
+		CompraDAO compraDAO = (CompraDAO) application.getAttribute("compraDAO");
 
 		ProductoDAO productodao = (ProductoDAO) application.getAttribute("productoDAO");
 		String[] productos = request.getParameterValues("productos");
@@ -137,7 +140,14 @@ public class Zonadecompra extends HttpServlet {
 						} else {
 							p.setCantidad(cantidad);
 						}
-						productosCarrito.put(p.getId(), p);
+
+						if (cantidad <= 0) {
+
+							productosCarrito.remove(p.getId(), p);
+						} else {
+
+							productosCarrito.put(p.getId(), p);
+						}
 					}
 				}
 				productodao.cerrar();
@@ -147,6 +157,15 @@ public class Zonadecompra extends HttpServlet {
 
 				request.getRequestDispatcher("/WEB-INF/vistas/factura.jsp").forward(request, response);
 				break;
+
+			case "confirmado": {
+
+				compraDAO.abrir();
+
+				compraDAO.cerrar();
+
+			}
+
 			default:
 				request.getRequestDispatcher("/WEB-INF/vistas/factura.jsp").forward(request, response);
 

@@ -38,6 +38,7 @@
 <c:if test="${pageContext.request.requestURI != '/WEB-INF/vistas/index.jsp'}">
 					<c:if test="${pageContext.request.requestURI != '/WEB-INF/vistas/login.jsp'}">
 					<c:if test="${pageContext.request.requestURI != '/WEB-INF/vistas/alta.jsp'}">
+					
 						<li><a href="/loginserver?opcion=logout">Logout</a></li>
 				
 					
@@ -52,9 +53,10 @@
 				<c:if test="${pageContext.request.requestURI != '/WEB-INF/vistas/index.jsp'}">
 					<c:if test="${pageContext.request.requestURI != '/WEB-INF/vistas/productocrudusuario.jsp'}">
 				<c:if test="${pageContext.request.requestURI != '/WEB-INF/vistas/alta.jsp'}">
+				<c:if test="${pageContext.request.requestURI != '/WEB-INF/vistas/factura.jsp'}">
 						<li><a href="/admin/productocrud">Mantenimiento Productos</a></li>
 			
-				</c:if></c:if></c:if></c:if></c:if>	</c:if>
+				</c:if></c:if></c:if></c:if></c:if>	</c:if></c:if>
 	
 	<!--Alta Usuarios--->	
 			
@@ -65,9 +67,10 @@
 			<c:if test="${pageContext.request.requestURI != '/WEB-INF/vistas/alta.jsp'}">
 			<c:if test="${pageContext.request.requestURI != '/WEB-INF/vistas/productocrud.jsp'}">
 		<c:if test="${pageContext.request.requestURI != '/WEB-INF/vistas/index.jsp'}">
+		<c:if test="${pageContext.request.requestURI != '/WEB-INF/vistas/factura.jsp'}">
 				<li><a href="/alta">Alta</a></li>
 				
-				</c:if></c:if>	</c:if>	</c:if>	</c:if></c:if></c:if>
+				</c:if></c:if>	</c:if>	</c:if>	</c:if></c:if></c:if></c:if>
 				
 				<!--Alta Productos--->		
 				
@@ -79,13 +82,14 @@
 			<c:if test="${pageContext.request.requestURI != '/WEB-INF/vistas/alta.jsp'}">
 			<c:if test="${pageContext.request.requestURI != '/WEB-INF/vistas/login.jsp'}">
 			<c:if test="${pageContext.request.requestURI != '/WEB-INF/vistas/index.jsp'}">
+			<c:if test="${pageContext.request.requestURI != '/WEB-INF/vistas/factura.jsp'}">
 			
 			
 			<li><a href="/admin/productocrud?op=alta">Alta Productos</a></li>
 			
 			
 			
-				</c:if></c:if>	</c:if>	</c:if>	</c:if></c:if></c:if>
+				</c:if></c:if>	</c:if>	</c:if>	</c:if></c:if></c:if></c:if>
 				<!--Mantenimiento de Usuarios--->	
 				
 			<c:if test="${pageContext.request.requestURI != '/WEB-INF/vistas/usuariocrud.jsp'}">
@@ -94,9 +98,10 @@
 			<c:if test="${pageContext.request.requestURI != '/WEB-INF/vistas/productocrudusuario.jsp'}">	
 			<c:if test="${pageContext.request.requestURI != '/WEB-INF/vistas/alta.jsp'}">
 			<c:if test="${pageContext.request.requestURI != '/WEB-INF/vistas/index.jsp'}">
+			<c:if test="${pageContext.request.requestURI != '/WEB-INF/vistas/factura.jsp'}">
 			
 					<li><a href="/admin/usuariocrud">Mantenimiento Usuarios</a></li>
-								</c:if></c:if></c:if></c:if></c:if></c:if>
+								</c:if></c:if></c:if></c:if></c:if></c:if></c:if>
 								
 								
 								<!--Login--->		
@@ -105,9 +110,10 @@
 					<c:if test="${pageContext.request.requestURI != '/WEB-INF/vistas/usuarioform.jsp'}">
 					<c:if test="${pageContext.request.requestURI != '/WEB-INF/vistas/productoform.jsp'}">
 					<c:if test="${pageContext.request.requestURI != '/WEB-INF/vistas/productocrudusuario.jsp'}">
-					<c:if test="${pageContext.request.requestURI != '/WEB-INF/vistas/login.jsp'}">	
+					<c:if test="${pageContext.request.requestURI != '/WEB-INF/vistas/login.jsp'}">
+					<c:if test="${pageContext.request.requestURI != '/WEB-INF/vistas/factura.jsp'}">	
 						<li><a href="/loginserver">Login</a></li>
-		</c:if>	</c:if></c:if></c:if></c:if></c:if>
+		</c:if>	</c:if></c:if></c:if></c:if></c:if></c:if>
 		
 		
 		

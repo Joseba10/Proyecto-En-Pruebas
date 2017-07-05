@@ -3,6 +3,7 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
+<%@ include file="includes/cabecera.jsp" %>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Factura</title>
 
@@ -91,7 +92,8 @@ a{
 text-decoration: none;}
 
 #carrito{
-margin-top:-210px;
+
+
 margin-left:100px;
 border: solid 2px;
 width: 200px;
@@ -110,7 +112,6 @@ height: 40px;
 #confirmar{
 
 margin-left: 80px;
-margin-top: 80px;
 border: solid 2px;
 width: 230px;
 text-align:center;
@@ -204,9 +205,25 @@ margin-left: 150px;
 	
 	<div id="precio">
 	
-	<p>Precio Total:</p>
+	<p>Precio Total:
+	<c:set var="PagoTotal" value="${0}" />
+	<c:set var="Pago" value="${0}" />
+	<c:forEach items="${sessionScope.productosCarrito}" var="producto">
 	
 	
+	<c:set var="PagoTotal" value="${(producto.value.cantidad * producto.value.precio)}" />
+	<c:set var="Pago" value="${Pago+PagoTotal}" />
+	
+
+	
+	</c:forEach>
+	
+	${Pago}
+	
+	
+	</p>
+	
+		
 	</div>
 	
 	<div id="confirmar">
