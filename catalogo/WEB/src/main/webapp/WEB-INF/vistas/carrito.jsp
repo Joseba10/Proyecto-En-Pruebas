@@ -24,16 +24,26 @@ font-weight: bold;
 .form-group form{width: 500px;
 margin-left: 340px;
 }
-/* 
-footer{
-margin-left:600px;
-font-weight: bold;
+
+
+@media screen and (max-width: 1280px)and (orientation: landscape){
+
+.container{
+
+
+margin-left: -300px;
 
 }
-form{
-margin-top:100px;
-margin-left: 550px;
-} */
+
+.container h1{
+
+
+
+margin-left: 270px;}
+
+}
+
+
 </style>
 
 
@@ -61,7 +71,7 @@ margin-left: 550px;
 		<p>Productos que quieres comprar y la cantidad</p>
 			<c:forEach items="${arrayproductos}" var="producto">
 				${producto.nombre}
-				<input class="form-control"name="${producto.id }" type="number" value="" placeholder="Cantidad" pattern="[0-9]+"><br>
+				<input class="form-control"name="${producto.id }" type="number" max="${producto.cantidad}" value="" placeholder="Cantidad" pattern="[0-9]+"><br>
 			</c:forEach>	
 			
 

@@ -81,6 +81,41 @@ width: 300px;
 
 }
 
+
+
+
+@media screen and (max-width: 1280px)and (orientation: landscape){
+
+#productos img{
+
+width: 400px;
+margin-left: 280px;
+padding-bottom: 50px;
+}
+
+#texto{
+
+
+margin-left: -10px;
+
+}
+
+#flecha{
+
+margin-left: 340px;
+margin-top:-325px;
+
+}
+
+nav ul li a{
+
+margin-left: -220px;
+
+
+
+
+
+}
 </style>
 
 

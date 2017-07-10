@@ -2,6 +2,7 @@ package controladores;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.Enumeration;
 import java.util.TreeMap;
 
@@ -13,9 +14,10 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import DAO.CompraDAO;
+import DAO.FacturaDAO;
 import DAO.ProductoDAO;
 
+import com.ipartek.TIPOS.Factura;
 import com.ipartek.TIPOS.Producto;
 import com.ipartek.TIPOS.Usuario;
 
@@ -34,7 +36,7 @@ public class Zonadecompra extends HttpServlet {
 
 		ServletContext application = request.getServletContext();
 
-		CompraDAO compraDAO = (CompraDAO) application.getAttribute("compraDAO");
+		FacturaDAO compraDAO = (FacturaDAO) application.getAttribute("compraDAO");
 
 		ProductoDAO productodao = (ProductoDAO) application.getAttribute("productoDAO");
 		String[] productos = request.getParameterValues("productos");
@@ -69,6 +71,8 @@ public class Zonadecompra extends HttpServlet {
 
 		Usuario usuario = (Usuario) session.getAttribute("usuario");
 
+		TreeMap<Integer, Producto> productosCarrito = (TreeMap<Integer, Producto>) session.getAttribute("productosCarrito");
+
 		if (op == null) {
 
 			System.out.println(productos.toString());
@@ -90,8 +94,6 @@ public class Zonadecompra extends HttpServlet {
 				Enumeration<String> nombres = request.getParameterNames();
 
 				productodao.abrir();
-
-				TreeMap<Integer, Producto> productosCarrito = (TreeMap<Integer, Producto>) session.getAttribute("productosCarrito");
 
 				if (productosCarrito == null) {
 
@@ -160,12 +162,26 @@ public class Zonadecompra extends HttpServlet {
 
 			case "confirmado": {
 
+				int id = ((Usuario) session.getAttribute("usuario")).getId();
+				Factura factura = new Factura(id, new Date());
+
 				compraDAO.abrir();
 
+				int id_factura = compraDAO.insert(factura);
+
+				for (Producto p : productosCarrito.values()) {
+
+					compraDAO.insertFacturaProducto(id_factura, p.getId(), p.getCantidad());
+				}
 				compraDAO.cerrar();
 
 			}
+				request.getRequestDispatcher("/WEB-INF/vistas/productocrudusuario.jsp").forward(request, response);
 
+			case "finalizado": {
+				request.getRequestDispatcher("/WEB-INF/vistas/compraconfirmada.jsp").forward(request, response);
+
+			}
 			default:
 				request.getRequestDispatcher("/WEB-INF/vistas/factura.jsp").forward(request, response);
 

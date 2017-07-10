@@ -38,6 +38,7 @@ public class AltaServlet extends HttpServlet {
 		String username = request.getParameter("username");
 		String pass = request.getParameter("password");
 		String nombre_completo = request.getParameter("nombre_completo");
+		String pass2 = request.getParameter("pass2");
 
 		// Inicio sin datos: mostrar formulario
 		// Datos incorrectos: sin rellenar, límite de caracteres, no coinciden contraseñas
@@ -48,7 +49,7 @@ public class AltaServlet extends HttpServlet {
 
 		boolean hayDatos = username != null && pass != null && nombre_completo != null;
 		boolean datosCorrectos = validarCampo(username) && validarCampo(pass) && validarCampo(nombre_completo);
-		boolean passIguales = pass != null && pass.equals(nombre_completo);
+		boolean passIguales = pass != null && pass.equals(pass2);
 
 		if (hayDatos) {
 			if (!datosCorrectos) {

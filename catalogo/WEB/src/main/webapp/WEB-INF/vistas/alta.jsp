@@ -55,6 +55,37 @@ width: 200px;
 }
 
 
+@media screen and (max-width: 1280px)and (orientation: landscape){
+
+
+form{
+
+margin-left: 280px;
+
+font-size: 35px;
+}
+
+form label{
+
+padding-top:80px;
+margin-top: -40px;
+
+}
+
+form input {
+	
+	margin-top: 20px;
+	font-size: 30px;
+	
+}
+
+ul{
+font-size: 30px;
+
+margin-left: -80px;
+}
+
+}
 
 
 

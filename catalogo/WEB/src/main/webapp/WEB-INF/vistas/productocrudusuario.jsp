@@ -92,8 +92,33 @@ width: 200px;
 text-align: center;
 }
 
+@media screen and (max-width: 1280px)and (orientation: landscape){
+
+
+table{
+
+margin-left: 150px;
+
+
+
+}
+
+#carrito{
+
+margin-left:150px;
+
+}
+
+ul{
+
+margin-left: 200px;
+
+}
+
+}
+
 </style>
-<h2>Mantenimiento de Productos</h2>
+<h2>Catalogo de Productos</h2>
 
 <table border=1 width="700" height=150px;>
 

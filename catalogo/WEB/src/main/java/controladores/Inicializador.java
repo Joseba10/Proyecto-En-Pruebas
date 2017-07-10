@@ -7,13 +7,14 @@ import javax.servlet.ServletContextListener;
 import org.apache.log4j.Logger;
 import org.apache.log4j.PropertyConfigurator;
 
-import DAO.CompraDAO;
-import DAO.CompraDAOMySQL;
+import DAO.FacturaDAO;
+import DAO.FacturaDAOMySQL;
 import DAO.ProductoDAO;
 import DAO.ProductoDAOFactory;
 import DAO.UsuarioDAO;
 import DAO.UsuarioDAOMySQL;
 
+import com.ipartek.TIPOS.Factura;
 import com.ipartek.TIPOS.Producto;
 
 public class Inicializador implements ServletContextListener {
@@ -35,7 +36,7 @@ public class Inicializador implements ServletContextListener {
 		ServletContext application = arg0.getServletContext();
 		application.setAttribute("usuarioDAO", usuarioDAO);
 
-		CompraDAO compraDAO = new CompraDAOMySQL();
+		FacturaDAO compraDAO = new FacturaDAOMySQL();
 		application.setAttribute("compraDAO", compraDAO);
 
 		usuarioDAO.abrir();
@@ -83,5 +84,22 @@ public class Inicializador implements ServletContextListener {
 
 		application.setAttribute("listaproductos", listaproductos);
 		usuarioDAO.cerrar();
+
+		compraDAO.abrir();
+
+		try {
+
+			Factura.siguiente_factura = compraDAO.getMaxId() + 1;
+			System.out.println(Factura.siguiente_factura);
+		} catch (Exception e) {
+
+			log.info("Error al establecer el siguiente numero de factura");
+			throw new RuntimeException("Error");
+		}
+
+		compraDAO.cerrar();
+
+		String path = arg0.getServletContext().getContextPath();
+		application.setAttribute("rutafinal", path);
 	}
 }

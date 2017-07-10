@@ -146,6 +146,56 @@ margin-top: 50px;
 margin-left: 150px;
 }
 
+@media screen and (max-width: 1280px)and (orientation: landscape){
+
+
+table{
+
+margin-left: 130px;
+
+
+}
+
+ul{
+
+
+font-size: 30px;
+margin-left: 200px;}
+
+
+
+
+
+#carrito{
+
+margin-top: 50px;
+margin-left: 350px;
+width: 230px;
+}
+
+
+#confirmar{
+
+
+margin-left: 350px;
+
+
+}
+
+
+#precio{
+
+
+margin-left: -30px;
+
+margin-top: 0px;
+
+}
+
+
+}
+
+
 </style>
 </head>
 <body>
@@ -227,7 +277,8 @@ margin-left: 150px;
 	</div>
 	
 	<div id="confirmar">
-	<a href="Zonadecompra?op=confirmado">Confirmar Compra</a>
+	<a onclick="window.open('Zonadecompra?op=confirmado', '_self'); window.open('${applicationScope.rutafinal}/Zonadecompra?op=finalizado', '_blank', 'width=500,height=400')">
+Confirmar Compra</a>
 	
 	</div>
 
