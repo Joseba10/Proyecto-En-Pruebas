@@ -15,7 +15,7 @@
  	
 ul{
 
-margin-left: 370px;
+margin-left: 530px;
 margin-top: 0px;
 
 }
@@ -70,6 +70,39 @@ font-weight: bold;
 }
 
 
+@media screen and (max-width: 1280px)and (orientation: landscape){
+
+
+form{
+
+margin-left: 230px;
+
+font-size: 35px;
+}
+
+form label{
+
+padding-top:80px;
+margin-top: -40px;
+
+}
+
+form input {
+	
+	margin-top: 20px;
+	font-size: 30px;
+	
+}
+
+ul{
+font-size: 30px;
+
+margin-left: 130px;
+}
+
+ul li{
+
+width:300px;}
 
 
 

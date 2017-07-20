@@ -18,9 +18,9 @@ public class ProductoDAOMySQL extends IpartekDAOMySQL implements ProductoDAO {
 	private final static String Update = "Update productos Set nombre=?, precio=?,descripcion=?,imagen=?,cantidad=? where id=?";
 	private final static String Delete = "Delete from productos where id=?";
 	private final static String FIND_BY_ID = "Select * from productos where id=?";
-
+	private final static String cogercantidad = "Update productos Set cantidad=? where id=?";
 	private final static String DELETE_TABLE_PRODUCTOS = "Delete from productos";
-	private PreparedStatement psFindAll, psFindById, psInsert, psUpdate, psDelete, psFindByName;
+	private PreparedStatement psVerCantidad, psFindAll, psFindById, psInsert, psUpdate, psDelete, psFindByName;
 	public ResultSet rs = null;
 	// LOG4J
 	private static Logger log = Logger.getLogger(ProductoDAOMySQL.class);

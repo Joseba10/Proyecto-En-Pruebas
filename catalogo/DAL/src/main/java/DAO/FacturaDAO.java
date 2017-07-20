@@ -1,15 +1,18 @@
 package DAO;
 
-import com.ipartek.TIPOS.Carrito;
 import com.ipartek.TIPOS.Factura;
 
 public interface FacturaDAO extends IpartekDAO {
 
 	public int insert(Factura factura);
 
-	public int delete(int id_username);
+	public void delete(Factura factura);
 
-	public void update(Carrito carrito);
+	public void update(Factura factura);
+
+	public Factura findid(int id);
+
+	public Factura[] findAll();
 
 	public int getMaxId();
 

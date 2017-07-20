@@ -8,21 +8,21 @@ import java.util.ArrayList;
 
 import org.apache.log4j.Logger;
 
-import com.ipartek.TIPOS.Carrito;
 import com.ipartek.TIPOS.Factura;
-import com.ipartek.TIPOS.Producto;
 
 public class FacturaDAOMySQL extends IpartekDAOMySQL implements FacturaDAO {
 
+	private final static String FIND_ALL = "Select * from facturas";
 	private final static String FIND_ID = "Select * from facturas where id=?";
 	private final static String INSERT = "Insert into facturas(numero_factura,id_usuarios,fecha)Values(?,?,?)";
-	private final static String Update = "Update facturas Set numero_facturas=?,id_usuarios=?,fecha=? where id=?";
+	private final static String Update = "Update facturas Set numero_factura=?,id_usuarios=?,fecha=? where id=?";
 	private final static String Delete = "Delete from facturas where id=?";
+	private final static String VERCANTIDADVENDIDA = "Select * FROM facturas_productos WHERE id_facturas=?";
 	private final static String GET_MAX_ID = "SELECT MAX(ID) FROM facturas";
 	private final static String Find_Produc_By_Factura = "Select * from productos ,facturas_productos where facturas_productos.id_facturas=? and productos.id=facturas_productos.id_productos";
 	private final static String Registrar_Productos = "Insert into facturas_productos(id_facturas,id_productos,cantidad) values(?,?,?)";
 
-	private PreparedStatement psFindById, psInsert, psUpdate, psDelete, psBuscarfactura, psRegistrar_Productos, psGetMaxId;
+	private PreparedStatement psVerCantidadVendida, psFindAll, psFindById, psInsert, psUpdate, psDelete, psBuscarfactura, psRegistrar_Productos, psGetMaxId;
 	public ResultSet rs = null;
 
 	// LOG4J
@@ -57,18 +57,18 @@ public class FacturaDAOMySQL extends IpartekDAOMySQL implements FacturaDAO {
 	}
 
 	@Override
-	public int delete(int id_username) {
+	public void delete(Factura factura) {
 		try {
 			psDelete = con.prepareStatement(Delete);
-			psDelete.setInt(1, id_username);
+			psDelete.setInt(1, factura.getId());
 			int res = psDelete.executeUpdate();
+
 			if (res != 1)
 				throw new DAOException("La actualizacion ha devuelto un valor " + res);
 		} catch (Exception e) {
 
 			throw new DAOException("Error en el delete ", e);
 		}
-		return id_username;
 
 	}
 
@@ -94,16 +94,19 @@ public class FacturaDAOMySQL extends IpartekDAOMySQL implements FacturaDAO {
 	}
 
 	@Override
-	public void update(Carrito carrito) {
+	public void update(Factura factura) {
 		try {
 			psUpdate = con.prepareStatement(Update);
-			psUpdate.setInt(1, carrito.getId_usuario());
-			psUpdate.setInt(2, carrito.getProductos());
-			psUpdate.setInt(3, carrito.getCantidad());
 
-			log.info(carrito.getId_usuario());
-			log.info(carrito.getProductos());
-			log.info(carrito.getCantidad());
+			psUpdate.setInt(1, factura.getNumero_factura());
+			psUpdate.setInt(2, factura.getId_usuarios());
+			psUpdate.setDate(3, new java.sql.Date(factura.getFecha().getTime()));
+			psUpdate.setInt(4, factura.getId());
+
+			log.info(factura.getId());
+			log.info(factura.getNumero_factura());
+			log.info(factura.getId_usuarios());
+			log.info(factura.getFecha());
 
 			int res = psUpdate.executeUpdate();
 
@@ -136,37 +139,73 @@ public class FacturaDAOMySQL extends IpartekDAOMySQL implements FacturaDAO {
 
 	// Adaptar
 
-	public Producto[] findProductoByFacturaId(int id) {
-		ArrayList<Producto> productos = new ArrayList<>();
-		ResultSet rs = null;
+	public Factura findid(int id) {
 
-		Producto producto;
+		Factura factura = null;
 
 		try {
-			psBuscarfactura = con.prepareStatement(Find_Produc_By_Factura);
-			psBuscarfactura.setInt(1, id);
+			psFindById = con.prepareStatement(FIND_ID);
 
-			rs = psBuscarfactura.executeQuery();
+			psFindById.setInt(1, id);
+			rs = psFindById.executeQuery(); // Conjunto de resultados que salen
+											// de la consulta
+			if (rs.next()) {
 
-			while (rs.next()) {
-				producto = new Producto();
+				factura = new Factura();
 
-				producto.setId(rs.getInt("id"));
-				producto.setNombre(rs.getString("nombre"));
-				producto.setPrecio(rs.getDouble("precio"));
-				producto.setDescripcion(rs.getString("descripcion"));
-				producto.setImagen(rs.getInt("imagen"));
-				producto.setCantidad(rs.getInt("cantidad"));
+				factura.setId(rs.getInt("id"));
+				factura.setNumero_factura(rs.getInt("numero_factura"));
+				factura.setId_usuarios(rs.getInt("id_usuarios"));
+				factura.setFecha(rs.getDate("fecha"));
 
-				productos.add(producto);
 			}
-		} catch (Exception e) {
-			throw new DAOException("Error al buscar los productos de la factura", e);
-		} finally {
-			cerrar(psBuscarfactura);
+		} catch (SQLException e) {
+			throw new DAOException("Error en FindById", e);
 		}
 
-		return productos.toArray(new Producto[productos.size()]);
+		return factura;
+
+	}
+
+	public Factura[] findAll() {
+		ArrayList<Factura> facturas = new ArrayList<Factura>();
+
+		try {
+			psFindAll = con.prepareStatement(FIND_ALL);
+			rs = psFindAll.executeQuery();
+			Factura factura;
+			while (rs.next()) {
+
+				factura = new Factura();
+				// System.out.println(rs.getString("username"));
+
+				factura.setId(rs.getInt("id"));
+				factura.setNumero_factura(rs.getInt("numero_factura"));
+				factura.setId_usuarios(rs.getInt("id_usuarios"));
+				factura.setFecha(rs.getDate("fecha"));
+
+				facturas.add(factura);
+
+			}
+
+		} catch (SQLException e) {
+
+			throw new DAOException("Error en FindAll", e);
+		} finally {
+
+			try {
+				if (rs != null)
+					rs.close();
+
+				if (psFindAll != null)
+					psFindAll.close();
+
+			} catch (SQLException e) {
+
+			}
+
+		}
+		return facturas.toArray(new Factura[facturas.size()]);
 	}
 
 	public int insertFacturaProducto(int id_factura, int id_producto, int cantidad) {

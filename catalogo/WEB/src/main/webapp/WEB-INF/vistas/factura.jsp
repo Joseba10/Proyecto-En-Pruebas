@@ -12,6 +12,13 @@
 
 
 
+p{
+
+
+margin-left: -120px;
+
+}
+
 h1{
 text-align: center;
 margin-top: 30px;
@@ -146,6 +153,13 @@ margin-top: 50px;
 margin-left: 150px;
 }
 
+footer{
+
+margin-left: 150px;
+
+}
+
+
 @media screen and (max-width: 1280px)and (orientation: landscape){
 
 
@@ -194,6 +208,7 @@ margin-top: 0px;
 
 
 }
+
 
 
 </style>
@@ -268,7 +283,7 @@ margin-top: 0px;
 	
 	</c:forEach>
 	
-	${Pago}
+	${Pago}€
 	
 	
 	</p>

@@ -64,6 +64,7 @@ public class UsuarioCrudServlet extends HttpServlet {
 				request.setAttribute("usuario", usuario);
 
 			case "alta":
+
 				request.getRequestDispatcher(RUTA_FORMULARIO).forward(request, response);
 				break;
 			default:

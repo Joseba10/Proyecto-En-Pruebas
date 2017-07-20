@@ -42,7 +42,7 @@ text-decoration: none;
 
 table{
 
-margin-left: 370px;
+margin-left: 320px;
 margin-top: 30px;
 border: solid;
 background-color: green;
@@ -82,7 +82,28 @@ a{
 
 text-decoration: none;}
 
+@media screen and (max-width: 1280px)and (orientation: landscape){
 
+
+table{
+
+margin-left: 130px;
+
+
+
+}
+
+#carrito{
+
+margin-left:150px;
+
+}
+
+ul{
+
+margin-left: 270px;
+
+}
 
 </style>
 <h2>Mantenimiento de Productos</h2>

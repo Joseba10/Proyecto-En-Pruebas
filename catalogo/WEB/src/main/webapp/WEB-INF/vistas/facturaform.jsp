@@ -1,21 +1,21 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-
-<jsp:useBean id="usuario" scope="request"
- class="com.ipartek.TIPOS.Usuario" />
- 
- 	<%@ include file="includes/cabecera.jsp" %>
+<%@ include file="includes/cabecera.jsp" %>
  	<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
  	<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
  	
  	
-	<form action="/admin/usuarioform" method="post">
+<jsp:useBean id="producto" scope="request"
+ class="com.ipartek.TIPOS.Producto" />
+ 
+ 	
+	
 		
 <style>
  	
 ul{
 
-margin-left: 490px;
+margin-left: 530px;
 margin-top: 0px;
 
 }
@@ -30,7 +30,6 @@ border-radius: 19px;
 color:blue;
 text-align:center;
 display: inline-block;
-
 
 }
 
@@ -49,7 +48,7 @@ border: none;}
 form{
 
 
-margin-left: 530px;
+margin-left: 560px;
 margin-top: 50px;}
 
 .errores{
@@ -57,12 +56,26 @@ margin-top: 50px;}
 margin-top:20px;
 width: 200px;
 }
+
+input:FOCUS{
+
+padding:10px;
+
+}
+
+
+input:hover{
+
+font-weight: bold;
+}
+
+
 @media screen and (max-width: 1280px)and (orientation: landscape){
 
 
 form{
 
-margin-left: 250px;
+margin-left: 230px;
 
 font-size: 35px;
 }
@@ -84,25 +97,29 @@ form input {
 ul{
 font-size: 30px;
 
-margin-left: 250px;
+margin-left: 320px;
 }
 
 ul li{
 
-width: 200px;
-}
-
+width:300px;}
 
 
 
 </style>
 
+<jspL:useBean id="factura" scope="request" class="com.ipartek.TIPOS.Factura" />
 
+<form action="/admin/facturaform" method="post">
+
+<ul>
+ 	
+ 		
+ 	</ul>
 		<fieldset>
 
-			<label for="username">Nombre</label> 
-			<input id="username" name="username"
-			 required minlength="4" value="${usuario.username}"
+			<label for="id">Id</label> 
+			<input id="id" name="id" required="required" value="${factura.id}"
 			 
 			<c:if test="${param.op=='modificar' or param.op == 'borrar'}">
 			
@@ -111,37 +128,35 @@ readonly="readonly"
 			  </c:if>
 >
 		</fieldset>
+<fieldset>
 
-		<fieldset>
-
-			<label for="password">Contraseña</label>
-			<input id="password" name="password" type="password" value="${usuario.password}">
-
-		</fieldset>
-		<fieldset>
-
-			<label for="pass2">Contraseña Otra vez</label>
-			<input id="pass2" name="pass2" type="password" value="${usuario.password}">
+			<label for="numero_factura">Numero de la factura</label>
+			<input id="numero_factura" name="numero_factura" type="text" value="${factura.numero_factura}">
 
 		</fieldset>
-		
-		<fieldset>
-
-			<label for="id_roles">ID ROLES</label>
-			<input id="id_roles" name="id_roles" type="text" value="${usuario.id_roles}">
-
-		</fieldset>
-		
 			<fieldset>
 
-			<label for="nombre_completo">Nombre Completo</label>
-			<input id="nombre_completo" name="nombre_completo" type="text" value="${usuario.nombre_completo}">
+			<label for="id_usuarios">Id del Usuario</label>
+			<input id="id_usuarios" name="id_usuarios" value="${factura.id_usuarios}">
 
 		</fieldset>
 		<fieldset>
 
-			<input type="submit" value="${fn:toUpperCase(param.op) }">
-			<p class="errores">${usuario.errores }</p>
+			<label for="fecha">Fecha</label>
+			<input id="fecha" name="fecha" type="date" value="${factura.fecha}">
+
+		</fieldset>
+
+		<fieldset>
+
+			<input type="submit" value="${fn:toUpperCase(param.op) }"
+			
+			<c:if test="${param.op==null or param.op=='' }">
+			style="display:none"
+			</c:if>
+			
+			>
+			<p class="errores">${producto.errores }</p>
 			
 			<input type="hidden" name="opform" value="${param.op }">
 
@@ -153,7 +168,7 @@ readonly="readonly"
 			document.forms[0].onsubmit = confirmarBorrado;
 		</script>
 	</c:if>
-	<%@ include file="includes/pie.jsp" %>
+	<%@ include file="includes/productopie.jsp" %>
 
 
 

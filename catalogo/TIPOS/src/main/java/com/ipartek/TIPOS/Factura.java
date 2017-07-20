@@ -14,6 +14,14 @@ public class Factura {
 
 	}
 
+	public Factura(int numero_facturas, int id_usuarios, Date fecha) {
+
+		this.numero_factura = numero_facturas;
+		this.id_usuarios = id_usuarios;
+		this.fecha = fecha;
+
+	}
+
 	public int getNumero_factura() {
 		return numero_factura;
 	}

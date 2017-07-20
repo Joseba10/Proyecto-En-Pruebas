@@ -11,7 +11,7 @@ margin-top: 30px;
 }
 ul{
 
-margin-left: 500px;
+margin-left:500px;
 margin-top: 0px;
 
 }
@@ -39,7 +39,7 @@ text-decoration: none;
 
 table{
 
-margin-left: 430px;
+margin-left: 450px;
 margin-top: 30px;
 border: solid;
 background-color: green;
@@ -81,52 +81,55 @@ border:solid #EFEFEF;
 -webkit-border-radius: 19px;
 -moz-border-radius: 19px;
 border-radius: 19px;
-margin-left:330px;
+margin-left:350px;
 text-decoration: none;
 
 }
 
-
 @media screen and (max-width: 1280px)and (orientation: landscape){
+
+
+table{
+
+margin-left: 200px;
+
+}
+
+table td,th{
+
+font-size: 22px;
+}
 
 
 ul{
 
-margin-left: 230px;
-margin-top: 0px;
-font-size: 30px;
+margin-left: 200px;
+
+font-size: 22px;
+
+
+
 
 }
 
 ul li{
-
-width: 200px;
-
-}
-
-table{
-
-margin-left: 250px;
-
-
+margin-top: 10px;
+width: 250px;
 }
 
 #alta a{
 
-
-margin-left:150px;
-
-
-}
+margin-left:100px;
+font-size: 22px;
 
 }
 
-
+}
 
 
 </style>
 
-<h2>Mantenimiento de usuarios</h2>
+<h2>Mantenimiento de Facturas</h2>
 
 <table border=1>
 
@@ -134,8 +137,8 @@ margin-left:150px;
 
 <tr>
 
-	<th>Operaciones<th>Usuario</th>
-	<th>Contraseña</th><th>Roles</th><th>Nombre Completo</th>
+	<th>Operaciones<th>Numero Factura</th>
+	<th>Id Usuario</th><th>Fecha</th>
 	
 	</tr>
 	
@@ -143,14 +146,14 @@ margin-left:150px;
 	
 	<tbody>
 	
-	<c:forEach items="${requestScope.usuarios}" var="usuario">
+	<c:forEach items="${applicationScope.facturasArr}" var="factura">
 	<tr>
-		<td><a href="?op=modificar&username=${usuario.username}">Modificar</a>
-		<a href="?op=borrar&username=${usuario.username}">Borrar</a>
-		<td>${usuario.username}</td>
-		<td>${usuario.password}</td>
-		<td>${usuario.id_roles}</td>
-		<td>${usuario.nombre_completo}</td>
+		<td><a href="?op=modificar&factura=${factura.id}">Modificar</a>
+		<a href="?op=borrar&factura=${factura.id}">Borrar</a>
+		<td>${factura.numero_factura}</td>
+		<td>${factura.id_usuarios}</td>
+		<td>${factura.fecha}</td>
+		
 		
 	</tr>
 	</c:forEach>
@@ -165,7 +168,7 @@ margin-left:150px;
 
 <div id="alta">
 
-<a href="usuariocrud?op=alta">Alta</a>
+<a href="/admin/facturacrud?op=alta">Alta</a>
 
 </div>
 

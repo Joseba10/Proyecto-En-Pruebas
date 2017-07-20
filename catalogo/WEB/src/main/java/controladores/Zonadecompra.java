@@ -143,7 +143,7 @@ public class Zonadecompra extends HttpServlet {
 							p.setCantidad(cantidad);
 						}
 
-						if (cantidad <= 0) {
+						if (p.getCantidad() <= 0) {
 
 							productosCarrito.remove(p.getId(), p);
 						} else {
@@ -166,21 +166,31 @@ public class Zonadecompra extends HttpServlet {
 				Factura factura = new Factura(id, new Date());
 
 				compraDAO.abrir();
+				productodao.abrir();
+				Producto producto;
 
 				int id_factura = compraDAO.insert(factura);
 
 				for (Producto p : productosCarrito.values()) {
 
 					compraDAO.insertFacturaProducto(id_factura, p.getId(), p.getCantidad());
+					producto = productodao.findById(p.getId());
+					producto.setCantidad(producto.getCantidad() - p.getCantidad());
+					productodao.update(producto);
+
 				}
+
+				application.setAttribute("listaproductos", productodao.findAll());
+				productodao.cerrar();
 				compraDAO.cerrar();
 
 			}
 				request.getRequestDispatcher("/WEB-INF/vistas/productocrudusuario.jsp").forward(request, response);
-
+				break;
 			case "finalizado": {
 				request.getRequestDispatcher("/WEB-INF/vistas/compraconfirmada.jsp").forward(request, response);
 
+				break;
 			}
 			default:
 				request.getRequestDispatcher("/WEB-INF/vistas/factura.jsp").forward(request, response);

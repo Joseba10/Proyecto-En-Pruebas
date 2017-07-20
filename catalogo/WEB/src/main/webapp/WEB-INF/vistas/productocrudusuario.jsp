@@ -42,7 +42,7 @@ text-decoration: none;
 
 table{
 
-margin-left: 370px;
+margin-left: 350px;
 margin-top: 30px;
 border: solid;
 background-color: green;
