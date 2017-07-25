@@ -63,7 +63,8 @@ public class Zonadecompra extends HttpServlet {
 		// }
 		// }
 		System.out.println("productosarray: " + productosarray);
-		// Recojo la sesion por lo que puedo coger toda la informacion que contenga
+		// Recojo la sesion por lo que puedo coger toda la informacion que
+		// contenga
 		HttpSession session = request.getSession();
 		session.setAttribute("listaproductos", productos);
 
@@ -79,7 +80,8 @@ public class Zonadecompra extends HttpServlet {
 
 		} else {
 
-			switch (op) { // La primera vez que entre ira a la zona del formulario
+			switch (op) { // La primera vez que entre ira a la zona del
+							// formulario
 			case "primeravez":
 
 				productodao.abrir();
@@ -122,16 +124,18 @@ public class Zonadecompra extends HttpServlet {
 						if (productosCarrito.containsKey(p.getId())) {
 
 							/*
-							 * Hacer TreeMap para sustituirlo de esta manera podria coger
-							 * los atributos,en este caso cantidad
+							 * Hacer TreeMap para sustituirlo de esta manera
+							 * podria coger los atributos,en este caso cantidad
 							 */
 							cantidadRepetida = productosCarrito.get(p.getId()).getCantidad();
 
-							// for (Producto productoRepetido : productosCarrito.values())
+							// for (Producto productoRepetido :
+							// productosCarrito.values())
 							// {
 							//
 							// if (productoRepetido.getId() == p.getId()) {
-							// cantidadRepetida = productoRepetido.getCantidad();
+							// cantidadRepetida =
+							// productoRepetido.getCantidad();
 							//
 							// }
 							//
@@ -150,6 +154,9 @@ public class Zonadecompra extends HttpServlet {
 
 							productosCarrito.put(p.getId(), p);
 						}
+
+						p.setCantidad(cantidad);
+						cantidad = 0;
 					}
 				}
 				productodao.cerrar();
@@ -188,6 +195,7 @@ public class Zonadecompra extends HttpServlet {
 				request.getRequestDispatcher("/WEB-INF/vistas/productocrudusuario.jsp").forward(request, response);
 				break;
 			case "finalizado": {
+
 				request.getRequestDispatcher("/WEB-INF/vistas/compraconfirmada.jsp").forward(request, response);
 
 				break;
