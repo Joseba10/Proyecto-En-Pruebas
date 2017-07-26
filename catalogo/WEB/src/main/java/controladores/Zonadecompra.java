@@ -124,8 +124,8 @@ public class Zonadecompra extends HttpServlet {
 						if (productosCarrito.containsKey(p.getId())) {
 
 							/*
-							 * Hacer TreeMap para sustituirlo de esta manera
-							 * podria coger los atributos,en este caso cantidad
+							 * Hacer TreeMap para sustituirlo de esta manera podria coger
+							 * los atributos,en este caso cantidad
 							 */
 							cantidadRepetida = productosCarrito.get(p.getId()).getCantidad();
 
@@ -192,6 +192,7 @@ public class Zonadecompra extends HttpServlet {
 				compraDAO.cerrar();
 
 			}
+				session.setAttribute("productosCarrito", new TreeMap<Integer, Producto>());
 				request.getRequestDispatcher("/WEB-INF/vistas/productocrudusuario.jsp").forward(request, response);
 				break;
 			case "finalizado": {
