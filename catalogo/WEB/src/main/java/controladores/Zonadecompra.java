@@ -17,6 +17,7 @@ import javax.servlet.http.HttpSession;
 import DAO.FacturaDAO;
 import DAO.ProductoDAO;
 
+import com.ipartek.TIPOS.Carrito;
 import com.ipartek.TIPOS.Factura;
 import com.ipartek.TIPOS.Producto;
 import com.ipartek.TIPOS.Usuario;
@@ -192,7 +193,7 @@ public class Zonadecompra extends HttpServlet {
 				compraDAO.cerrar();
 
 			}
-				session.setAttribute("productosCarrito", new TreeMap<Integer, Producto>());
+			session.setAttribute("productosCarrito", new TreeMap<Integer,Producto>());
 				request.getRequestDispatcher("/WEB-INF/vistas/productocrudusuario.jsp").forward(request, response);
 				break;
 			case "finalizado": {

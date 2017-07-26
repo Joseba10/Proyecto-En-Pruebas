@@ -26,6 +26,7 @@ public class AltaServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	/* package */static final String RUTA_ALTA = LoginServer.RUTA + "alta.jsp";
+	/* package */static final String RUTA_ENVIO = LoginServer.RUTA + "login.jsp";
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		doPost(request, response);
@@ -67,6 +68,8 @@ public class AltaServlet extends HttpServlet {
 					usuarioDAO.insert(usuario);
 					usuarioDAO.cerrar();
 					log.info("Un usuario se acaba de registrar");
+
+					request.getRequestDispatcher(RUTA_ENVIO).forward(request, response);
 				} catch (UsuarioYaExiste de) {
 					usuario.setUsername("");
 					usuario.setErrores("El usuario ya existe. Elige otro");
